@@ -1,5 +1,8 @@
-﻿namespace Customers.Messages;
+﻿using FluentResults;
+using MediatR;
 
-public interface IMessage
+namespace Customers.Messages;
+
+public interface IMessage : IRequest<Result>
 {
 }

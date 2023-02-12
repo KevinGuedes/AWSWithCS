@@ -1,6 +1,8 @@
-﻿namespace Customers.Messages;
+﻿using Customers.Messages;
 
-public class CustomerCreated : IMessage
+namespace Customers.Publisher.Messages;
+
+internal class CustomerCreated : IMessage
 {
     public required Guid Id { get; init; }
     public required string FullName { get; init; }

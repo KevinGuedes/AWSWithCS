@@ -1,4 +1,4 @@
-using Customers.Messages;
+using Customers.Publisher.Messages;
 using Customers.Publisher.Services;
 
 namespace Customers.Publisher
@@ -29,7 +29,7 @@ namespace Customers.Publisher
             {
                 await _sqsMessenger.SendMessageAsync(customerCreated, stoppingToken);
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(60000, stoppingToken);
+                await Task.Delay(1000, stoppingToken);
             }
         }
     }
