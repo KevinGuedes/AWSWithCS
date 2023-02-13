@@ -1,17 +1,17 @@
-using Customers.SQSPublisher.Messages;
-using Customers.SQSPublisher.Services;
+using Customers.SNSPublisher.Messages;
+using Customers.SNSPublisher.Services;
 
-namespace Customers.SQSPublisher
+namespace Customers.SNSPublisher
 {
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
-        private readonly ISqsMessenger _sqsMessenger;
+        private readonly ISnsMessenger _snsMessenger;
 
-        public Worker(ILogger<Worker> logger, ISqsMessenger sqsMessenger)
+        public Worker(ILogger<Worker> logger, ISnsMessenger snsMessenger)
         {
             _logger = logger;
-            _sqsMessenger = sqsMessenger;
+            _snsMessenger = snsMessenger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -27,7 +27,7 @@ namespace Customers.SQSPublisher
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                await _sqsMessenger.SendMessageAsync(customerCreated, stoppingToken);
+                await _snsMessenger.PublishMessageAsync(customerCreated, stoppingToken);
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(1000, stoppingToken);
             }

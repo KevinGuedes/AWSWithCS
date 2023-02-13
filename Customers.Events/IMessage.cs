@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using MediatR;
 
-namespace Customers.Messages;
+namespace Shared.Customers.Messages;
 
 public interface IMessage : IRequest<Result>
 {

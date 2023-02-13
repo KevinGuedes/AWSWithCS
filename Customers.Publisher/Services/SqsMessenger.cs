@@ -1,16 +1,11 @@
 ﻿using Amazon.SQS;
 using Amazon.SQS.Model;
-using Customers.Messages;
-using Customers.Publisher.Settings;
+using Customers.SQSPublisher.Settings;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Shared.Customers.Messages;
 using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace Customers.Publisher.Services;
+namespace Customers.SQSPublisher.Services;
 
 public class SqsMessenger : ISqsMessenger
 {
@@ -24,7 +19,9 @@ public class SqsMessenger : ISqsMessenger
         _queueSettings = queueSettings.Value;
     }
 
-    public async Task<SendMessageResponse> SendMessageAsync<T>(T message, CancellationToken cancellationToken) where T : IMessage
+    public async Task<SendMessageResponse> SendMessageAsync<T>(
+        T message,
+        CancellationToken cancellationToken) where T : IMessage
     {
         var queueUrl = await GetQueueUrlAsync(cancellationToken);
 
@@ -44,10 +41,10 @@ public class SqsMessenger : ISqsMessenger
             }
         };
 
-        return await _sqs.SendMessageAsync(sendMessageRequest);
+        return await _sqs.SendMessageAsync(sendMessageRequest, cancellationToken);
     }
 
-    private async Task<string> GetQueueUrlAsync(CancellationToken cancellationToken)
+    private async ValueTask<string> GetQueueUrlAsync(CancellationToken cancellationToken)
     {
         if (_queueUrl is not null) return _queueUrl;
 

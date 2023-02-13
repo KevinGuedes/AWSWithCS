@@ -1,7 +1,7 @@
 using Amazon.SQS;
-using Customers.Publisher;
-using Customers.Publisher.Services;
-using Customers.Publisher.Settings;
+using Customers.SQSPublisher;
+using Customers.SQSPublisher.Services;
+using Customers.SQSPublisher.Settings;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>

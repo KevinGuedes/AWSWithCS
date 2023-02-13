@@ -1,4 +1,4 @@
-﻿namespace Customers.Publisher.Settings;
+﻿namespace Customers.SQSPublisher.Settings;
 
 public class QueueSettings
 {

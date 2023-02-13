@@ -1,7 +1,7 @@
 ﻿using Amazon.SQS.Model;
-using Customers.Messages;
+using Shared.Customers.Messages;
 
-namespace Customers.Publisher.Services;
+namespace Customers.SQSPublisher.Services;
 
 public interface ISqsMessenger
 {

@@ -1,10 +1,9 @@
 ﻿using Amazon.SQS;
 using Amazon.SQS.Model;
 using Customers.Consumer.Settings;
-using Customers.Messages;
 using MediatR;
 using Microsoft.Extensions.Options;
-using System.Reflection;
+using Shared.Customers.Messages;
 using System.Text.Json;
 
 namespace Customers.Consumer;
@@ -73,7 +72,7 @@ internal class MessageConsumerService : BackgroundService
         }
     }
 
-    private async Task<string> GetQueueUrlAsync(CancellationToken cancellationToken)
+    private async ValueTask<string> GetQueueUrlAsync(CancellationToken cancellationToken)
     {
         if (_queueUrl is not null) return _queueUrl;
 

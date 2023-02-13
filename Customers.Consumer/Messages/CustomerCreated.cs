@@ -1,4 +1,4 @@
-﻿using Customers.Messages;
+﻿using Shared.Customers.Messages;
 
 namespace Customers.Consumer.Messages;
 

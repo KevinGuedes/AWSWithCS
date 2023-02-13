@@ -1,6 +1,6 @@
 ﻿using Shared.Customers.Messages;
 
-namespace Customers.SQSPublisher.Messages;
+namespace Customers.SNSPublisher.Messages;
 
 internal class CustomerCreated : IMessage
 {
@@ -10,3 +10,4 @@ internal class CustomerCreated : IMessage
     public required string GitHubUsername { get; init; }
     public required DateTime DateOfBirth { get; init; }
 }
+
